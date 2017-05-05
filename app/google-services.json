@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "930884062254",
+    "firebase_url": "https://skyhi-3a064.firebaseio.com",
+    "project_id": "skyhi-3a064",
+    "storage_bucket": "skyhi-3a064.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930884062254:android:082127dde8a17baa",
+        "android_client_info": {
+          "package_name": "com.example.skyhi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930884062254-92hgk0f3sg7c1ii970rc66g3ei5ttvt9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skyhi",
+            "certificate_hash": "e23d08eb4888206ec5b5feb816b368c0ee01274e"
+          }
+        },
+        {
+          "client_id": "930884062254-i5f6621g9g4782gnhh8k2vrheg60r4b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXrMhTsEXPs8wUbarhXC7mfwTY29eltb8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930884062254-i5f6621g9g4782gnhh8k2vrheg60r4b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

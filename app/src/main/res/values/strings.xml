@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SkyHi</string>
     <string name="button_label">Log In</string>
+    <string name="trouble_shoot_button">Need to troubleshoot?</string>
+    <string name="contact_us">Need to contact us?</string>
+    <string name="phone_number">555-555-5555</string>
+    <string name="email">admin@skyhibroadband.com</string>
 </resources>
