@@ -3,6 +3,9 @@ package com.example.skyhi;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,13 +20,14 @@ public class TroubleshootScreen extends AppCompatActivity {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    List<String> listDataHeader, listDataHeaderVideos;
+    HashMap<String, List<String>> listDataChild, listDataChildVideos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_troubleshoot_screen);
+        setTitle("Please select your problem");
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -36,7 +40,7 @@ public class TroubleshootScreen extends AppCompatActivity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
-        // Listview Group click listener
+        // Extends the list
         expListView.setOnGroupClickListener(new OnGroupClickListener() {
 
             @Override
@@ -49,47 +53,22 @@ public class TroubleshootScreen extends AppCompatActivity {
             }
         });
 
-        // Listview Group expanded listener
-        expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Listview Group collasped listener
-        expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        // Listview on child click listener
+        // Opens up youtube video
         expListView.setOnChildClickListener(new OnChildClickListener() {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+                String movieURL = listDataChildVideos.get(
+                                listDataHeaderVideos.get(groupPosition)).get(
+                                childPosition);
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(movieURL)));
                 return false;
             }
         });
+
     }
 
     /*
@@ -97,40 +76,48 @@ public class TroubleshootScreen extends AppCompatActivity {
      */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
+        listDataHeaderVideos =  new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
+        listDataChildVideos = new HashMap<String, List<String>>();
 
         // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
+        listDataHeader.add("Movies");
+        listDataHeader.add("Video Games");
+
+        listDataHeaderVideos.add("Top 250 Videos");
+        listDataHeaderVideos.add("Now Showing Videos");
 
         // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
+        List<String> movies = new ArrayList<String>();
+        List<String> moviesVideos = new ArrayList<String>();
+        movies.add("The Shawshank Redemption");
+        moviesVideos.add("https://www.youtube.com/watch?v=6hB3S9bIaco");
+        movies.add("Pulp Fiction");
+        moviesVideos.add("https://www.youtube.com/watch?v=s7EdQ4FqbhY");
+        movies.add("The Good, the Bad and the Ugly");
+        moviesVideos.add("https://www.youtube.com/watch?v=WCN5JJY_wiA");
+        movies.add("The Dark Knight");
+        moviesVideos.add("https://www.youtube.com/watch?v=EXeTwQWrcwY");
 
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
 
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
+        List<String> videoGames = new ArrayList<String>();
+        List<String> videoGamesVideos = new ArrayList<String>();
+        videoGames.add("Uncharted 4");
+        videoGamesVideos.add("https://www.youtube.com/watch?v=hh5HV4iic1Y");
+        videoGames.add("Halo 5");
+        videoGamesVideos.add("https://www.youtube.com/watch?v=Rh_NXwqFvHc");
+        videoGames.add("The Witcher 3");
+        videoGamesVideos.add("https://www.youtube.com/watch?v=c0i88t0Kacs");
+        videoGames.add("Overwatch");
+        videoGamesVideos.add("https://www.youtube.com/watch?v=FqnKB22pOC0");
+        videoGames.add("To the Moon");
+        videoGamesVideos.add("https://www.youtube.com/watch?v=sqkJuSV-23U");
+        
 
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        listDataChild.put(listDataHeader.get(0), movies); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), videoGames);
+        
+        listDataChildVideos.put(listDataHeaderVideos.get(0), moviesVideos); // Header, Child data
+        listDataChildVideos.put(listDataHeaderVideos.get(1), videoGamesVideos);
     }
 }

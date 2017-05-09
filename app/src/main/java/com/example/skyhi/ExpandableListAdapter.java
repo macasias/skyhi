@@ -104,3 +104,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 }
+
+
+
+
+
+//need to modify the custom class - add a String argument that overrides the add function
+// the String is the hyperlink associated with the button
